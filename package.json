@@ -2,14 +2,17 @@
   "name": "@dlghq/emoji",
   "version": "0.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/emoji.js",
+  "module": "dist/emoji.es.js",
+  "jsnext:main": "dist/emoji.es.js",
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
     "pretest": "eslint src/ && flow check",
     "test": "exit 0",
-    "build": "node scripts/generate.js",
+    "prebuild": "scripts/build",
+    "build": "rollup -c rollup.config.js",
     "preversion": "npm test && npm run build",
     "postversion": "npm publish",
     "postpublish": "git push --follow-tags"
@@ -28,12 +31,12 @@
   },
   "homepage": "https://github.com/dialogs/emoji#readme",
   "devDependencies": {
-    "@dlghq/eslint-config-dialog": "1.9.1",
-    "eslint": "3.7.1",
-    "flow-bin": "0.33.0",
-    "jsdom": "9.6.0"
-  },
-  "dependencies": {
-    "lodash": "^4.16.4"
+    "@dlghq/babel-preset-dialog": "2.4.0",
+    "@dlghq/eslint-config-dialog": "1.14.0",
+    "eslint": "3.10.1",
+    "flow-bin": "0.35.0",
+    "rollup": "0.36.3",
+    "rollup-plugin-babel": "2.6.1",
+    "rollup-plugin-json": "2.0.2"
   }
 }

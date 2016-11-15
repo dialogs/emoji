@@ -1,0 +1,3 @@
+{
+  "presets": ["@dlghq/babel-preset-dialog"]
+}
