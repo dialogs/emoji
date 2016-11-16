@@ -34,7 +34,7 @@ data.forEach((emoji) => {
   const unified = emoji.unified.toLowerCase();
   const char = unified
     .split('-')
-    .map((code) => String.fromCodePoint(parseInt(unified, 16)))
+    .map((code) => String.fromCodePoint(parseInt(code, 16)))
     .join('');
 
   const category = emoji.category.toLowerCase();
