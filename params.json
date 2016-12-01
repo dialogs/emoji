@@ -1,0 +1,6 @@
+{
+  "name": "Emoji",
+  "tagline": "",
+  "body": "Dialog Emoji\r\n------------\r\n\r\nInstallation\r\n------------\r\n\r\n```\r\nnpm install --save @dlghq/emoji\r\n```\r\n\r\nUsage\r\n-----\r\n\r\n```js\r\nimport {\r\n  categories,\r\n  getEmojiByChar,\r\n  getEmojiByName\r\n} from '@dlghq/emoji';\r\nimport AppleEmojiImage from '@dlghq/emoji/dist/apple.png';\r\n\r\nconst { x, y } = getEmojiByName('smile');\r\n```\r\n\r\nAPI\r\n---\r\n\r\n```js\r\ntype Emoji = {\r\n  char: string,\r\n  name: ?string,\r\n  x: number,\r\n  y: number,\r\n  hasApple: boolean,\r\n  hasGoogle: boolean,\r\n  hasTwitter: boolean,\r\n  hasEmojione: boolean\r\n}\r\n```\r\n\r\n`categories: { [name: string]: string[] }`\r\n\r\nObject where key is the category name and value is array of emoji chars\r\n\r\n---\r\n\r\n`getEmojiByChar: (char: string) => ?Emoji`\r\nFunction which resolve char to emoji. Returns null if emoji not found.\r\n\r\n---\r\n\r\n`getEmojiByName: (name: string) => ?Emoji`\r\nFunction which resolve emoji by short name. Returns null if emoji not found.\r\n\r\n\r\nLicense\r\n-------\r\n[Apache-2.0](LICENSE)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
