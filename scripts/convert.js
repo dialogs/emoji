@@ -29,6 +29,7 @@ function packEmojiHas(emoji) {
 
 const emojis = [];
 const categories = {};
+const sortOrder = {};
 
 data.forEach((emoji) => {
   const unified = emoji.unified.toLowerCase();
@@ -37,11 +38,13 @@ data.forEach((emoji) => {
     .map((code) => String.fromCodePoint(parseInt(code, 16)))
     .join('');
 
+
   const category = emoji.category.toLowerCase();
   if (!categories[category]) {
     categories[category] = [];
   }
 
+  sortOrder[char] = parseInt(emoji['sort_order'], 10);
   categories[category].push(char);
 
   emojis.push([
@@ -52,6 +55,10 @@ data.forEach((emoji) => {
     emoji.sheet_y,
     packEmojiHas(emoji)
   ]);
+});
+
+Object.keys(categories).forEach((name) => {
+  categories[name].sort((left, right) => sortOrder[left] - sortOrder[right]);
 });
 
 fs.writeFileSync(
