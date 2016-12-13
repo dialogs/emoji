@@ -4,6 +4,7 @@
  */
 
 import { emojis } from './emoji.json';
+import { isEmojiSupports } from './utils';
 
 type PackedEmoji = [string, string, string[], number, number, number];
 type PackedIndex = { [key: string]: PackedEmoji };
@@ -13,11 +14,14 @@ export type Emoji = {
   name: ?string,
   x: number,
   y: number,
+  useImage: boolean,
   hasApple: boolean,
   hasGoogle: boolean,
   hasTwitter: boolean,
   hasEmojione: boolean
 };
+
+const useImage = !isEmojiSupports();
 
 const nameIndex: PackedIndex = Object.create(null);
 const charIndex: PackedIndex = Object.create(null);
@@ -37,6 +41,7 @@ function unpack(emoji: PackedEmoji): Emoji {
   const image = emoji[5];
 
   return {
+    useImage,
     char: emoji[0],
     name: emoji[2][0],
     x: emoji[3],
