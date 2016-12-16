@@ -1,9 +1,8 @@
 /**
  * Copyright 2016 Dialog LLC <info@dlg.im>
- * @flow
  */
 
-export function isEmojiSupports(): boolean {
+export function isAppleEmojiSupports(): boolean {
   if (!window.navigator) {
     return false;
   }

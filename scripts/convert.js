@@ -6,54 +6,56 @@ const fs = require('fs');
 const path = require('path');
 const data = require('./emoji.json');
 
-function packEmojiHas(emoji) {
-  let bits = 0;
-  if (emoji.has_img_apple) {
-    bits |= 1;
-  }
-
-  if (emoji.has_img_google) {
-    bits |= 2;
-  }
-
-  if (emoji.has_img_twitter) {
-    bits |= 4;
-  }
-
-  if (emoji.has_img_emojione) {
-    bits |= 8;
-  }
-
-  return bits;
-}
-
 const emojis = [];
 const categories = {};
 const sortOrder = {};
 
-data.forEach((emoji) => {
-  const unified = emoji.unified.toLowerCase();
-  const char = unified
-    .split('-')
-    .map((code) => String.fromCodePoint(parseInt(code, 16)))
-    .join('');
+function unifiedToChar(unified) {
+  return unified
+          .toLowerCase()
+          .split('-')
+          .map((code) => String.fromCodePoint(parseInt(code, 16)))
+          .join('');
+}
 
+function parseSkinVariations(variations) {
+  if (!variations) {
+    return null;
+  }
+
+  return Object.keys(variations).map((key) => {
+    const emoji = variations[key];
+    const char = unifiedToChar(emoji.unified);
+
+    return [
+      char,
+      emoji.sheet_x,
+      emoji.sheet_y
+    ];
+  });
+}
+
+data.forEach((emoji) => {
+  if (!emoji.has_img_apple) {
+    return;
+  }
+
+  const char = unifiedToChar(emoji.unified);
 
   const category = emoji.category.toLowerCase();
   if (!categories[category]) {
     categories[category] = [];
   }
 
-  sortOrder[char] = parseInt(emoji['sort_order'], 10);
+  sortOrder[char] = parseInt(emoji.sort_order, 10);
   categories[category].push(char);
 
   emojis.push([
     char,
-    unified,
-    emoji.short_names,
     emoji.sheet_x,
     emoji.sheet_y,
-    packEmojiHas(emoji)
+    emoji.short_names,
+    parseSkinVariations(emoji.skin_variations)
   ]);
 });
 

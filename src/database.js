@@ -1,35 +1,29 @@
 /**
  * Copyright 2016 Dialog LLC <info@dlg.im>
- * @flow
  */
 
 import { emojis } from './emoji.json';
-import { isEmojiSupports } from './utils';
+import { isAppleEmojiSupports } from './utils';
 
-type PackedEmoji = [string, string, string[], number, number, number];
-type PackedIndex = { [key: string]: PackedEmoji };
+const FULL_EMOJI_CHAR = 0;
+const FULL_EMOJI_X = 1;
+const FULL_EMOJI_Y = 2;
+const FULL_EMOJI_NAMES = 3;
+const FULL_EMOJI_VARIATIONS = 4;
 
-export type Emoji = {
-  char: string,
-  name: ?string,
-  x: number,
-  y: number,
-  useImage: boolean,
-  hasApple: boolean,
-  hasGoogle: boolean,
-  hasTwitter: boolean,
-  hasEmojione: boolean
-};
+const VAR_EMOJI_CHAR = 0;
+const VAR_EMOJI_X = 1;
+const VAR_EMOJI_Y = 2;
 
-const useImage = !isEmojiSupports();
+const useImage = !isAppleEmojiSupports();
 
-const nameIndex: PackedIndex = Object.create(null);
-const charIndex: PackedIndex = Object.create(null);
+const nameIndex = Object.create(null);
+const charIndex = Object.create(null);
 
 for (let i = 0; i < emojis.length; i++) {
   const emoji = emojis[i];
-  const char = emoji[0];
-  const names = emoji[2];
+  const char = emoji[FULL_EMOJI_CHAR];
+  const names = emoji[FULL_EMOJI_NAMES];
 
   charIndex[char] = emoji;
   for (let j = 0; j < names.length; j++) {
@@ -37,28 +31,40 @@ for (let i = 0; i < emojis.length; i++) {
   }
 }
 
-function unpack(emoji: PackedEmoji): Emoji {
-  const image = emoji[5];
-
+function unpack(emoji) {
   return {
     useImage,
-    char: emoji[0],
-    name: emoji[2][0],
-    x: emoji[3],
-    y: emoji[4],
-    hasApple: Boolean(image & 1),
-    hasGoogle: Boolean(image & 2),
-    hasTwitter: Boolean(image & 4),
-    hasEmojione: Boolean(image & 8)
+    char: emoji[FULL_EMOJI_CHAR],
+    name: emoji[FULL_EMOJI_NAMES][0],
+    x: emoji[FULL_EMOJI_X],
+    y: emoji[FULL_EMOJI_Y]
   };
 }
 
-export function getEmojiByChar(char: string): ?Emoji {
+export function getEmojiByChar(char) {
   const emoji = charIndex[char];
   return emoji ? unpack(emoji) : null;
 }
 
-export function getEmojiByName(name: string): ?Emoji {
+export function getEmojiByName(name) {
   const emoji = nameIndex[name];
   return emoji ? unpack(emoji) : null;
+}
+
+export function getEmojiVariations(char) {
+  const emoji = charIndex[char];
+  if (emoji) {
+    const variations = emoji[FULL_EMOJI_VARIATIONS];
+    if (variations) {
+      return variations.map((variation) => {
+        return {
+          char: variation[VAR_EMOJI_CHAR],
+          x: variation[VAR_EMOJI_X],
+          y: variation[VAR_EMOJI_Y]
+        };
+      });
+    }
+  }
+
+  return [];
 }

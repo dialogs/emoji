@@ -14,13 +14,13 @@ rm -f "$DIRNAME/emoji.json"
 
 # Images
 download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_apple_64.png
-download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_emojione_64.png
-download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_google_64.png
-download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_twitter_64.png
+# download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_emojione_64.png
+# download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_google_64.png
+# download https://raw.githubusercontent.com/iamcal/emoji-data/master/sheet_twitter_64.png
 
 mkdir -p "$DIST"
 
 mv "$DIRNAME/sheet_apple_64.png" "$DIST/apple.png"
-mv "$DIRNAME/sheet_emojione_64.png" "$DIST/emojione.png"
-mv "$DIRNAME/sheet_google_64.png" "$DIST/google.png"
-mv "$DIRNAME/sheet_twitter_64.png" "$DIST/twitter.png"
+# mv "$DIRNAME/sheet_emojione_64.png" "$DIST/emojione.png"
+# mv "$DIRNAME/sheet_google_64.png" "$DIST/google.png"
+# mv "$DIRNAME/sheet_twitter_64.png" "$DIST/twitter.png"
