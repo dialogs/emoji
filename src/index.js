@@ -3,11 +3,13 @@
  */
 
 import categories from './categories';
-import { getEmojiByChar, getEmojiByName, getEmojiVariations } from './database';
+import { getEmojiByChar, getEmojiByName } from './database';
+import { detectEmoji, detectNamedEmoji } from './detect';
 
 export {
   categories,
   getEmojiByChar,
   getEmojiByName,
-  getEmojiVariations
+  detectEmoji,
+  detectNamedEmoji
 };

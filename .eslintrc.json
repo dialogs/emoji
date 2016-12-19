@@ -2,5 +2,8 @@
   "extends": "@dlghq/eslint-config-dialog",
   "env": {
     "jest": true
+  },
+  "rules": {
+    "quote-props": [2, "as-needed", { "numbers": true, "unnecessary": false }]
   }
 }

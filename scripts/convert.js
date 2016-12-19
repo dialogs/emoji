@@ -36,16 +36,23 @@ function parseSkinVariations(variations) {
 }
 
 data.forEach((emoji) => {
+  // skip emoji unsupported by apple
   if (!emoji.has_img_apple) {
     return;
   }
 
-  const char = unifiedToChar(emoji.unified);
-
   const category = emoji.category.toLowerCase();
+
+  // skip skin tones
+  if (category === 'skin tones') {
+    return;
+  }
+
   if (!categories[category]) {
     categories[category] = [];
   }
+
+  const char = unifiedToChar(emoji.unified);
 
   sortOrder[char] = parseInt(emoji.sort_order, 10);
   categories[category].push(char);

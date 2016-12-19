@@ -11,4 +11,9 @@ describe('database', () => {
 
     expect(emojiByName).toEqual(emojiByChar);
   });
+
+  it('should return emoji by char', () => {
+    expect(getEmojiByChar('😄')).not.toBeNull();
+    expect(getEmojiByChar('👮🏿')).not.toBeNull();
+  });
 });
