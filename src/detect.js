@@ -13,7 +13,7 @@ type EmojiRange = {
   end: number
 };
 
-const NAMED_PATTERN = /:([a-z0-9+_]+):(?::skin-tone-([23456]):)?/ig;
+const NAMED_PATTERN = /:([a-z0-9+_-]+):(?::skin-tone-([23456]):)?/ig;
 const NAMED_TONES = {
   '2': '🏻',
   '3': '🏼',
