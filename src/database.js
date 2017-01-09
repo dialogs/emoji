@@ -4,6 +4,7 @@
  */
 
 import { charIndex, nameIndex } from './indexes';
+import { isAppleEmojiSupports } from './utils';
 
 export type Emoji = {
   char: string,
@@ -18,4 +19,10 @@ export function getEmojiByChar(char: string): ?Emoji {
 
 export function getEmojiByName(name: string): ?Emoji {
   return nameIndex[name];
+}
+
+const _isAppleEmojiSupports = isAppleEmojiSupports();
+
+export function shouldUseImage(): boolean {
+  return _isAppleEmojiSupports;
 }
