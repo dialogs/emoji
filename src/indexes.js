@@ -4,11 +4,11 @@
 
 import { emojis } from './emoji.json';
 
-const FULL_EMOJI_CHAR = 0;
-const FULL_EMOJI_X = 1;
-const FULL_EMOJI_Y = 2;
-const FULL_EMOJI_NAMES = 3;
-const FULL_EMOJI_VARIATIONS = 4;
+export const FULL_EMOJI_CHAR = 0;
+export const FULL_EMOJI_X = 1;
+export const FULL_EMOJI_Y = 2;
+export const FULL_EMOJI_NAMES = 3;
+export const FULL_EMOJI_VARIATIONS = 4;
 
 const VAR_EMOJI_CHAR = 0;
 const VAR_EMOJI_X = 1;
