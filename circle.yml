@@ -6,3 +6,7 @@ general:
   branches:
     ignore:
       - gh-pages
+
+test:
+  pre:
+    - scripts/build
