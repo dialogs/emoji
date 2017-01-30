@@ -23,6 +23,12 @@ describe('detect', () => {
     ]);
 
     expect(
+      detectEmoji('WTF, *️⃣!')
+    ).toEqual([
+      { start: 5, end: 8, emoji: getEmojiByChar('*️⃣') }
+    ]);
+
+    expect(
       detectNamedEmoji('Hello, :smile:!')
     ).toEqual([
       { start: 7, end: 14, emoji: getEmojiByChar('😄') }
