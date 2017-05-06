@@ -11,7 +11,7 @@ const config = {
     json(),
     babel({
       babelrc: false,
-      presets: [['@dlghq/dialog', { modules: false, helpers: true }]]
+      presets: [['@dlghq/dialog', { modules: false, helpers: true, runtime: false }]]
     })
   ],
   sourceMap: true,

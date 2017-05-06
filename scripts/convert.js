@@ -35,9 +35,20 @@ function parseSkinVariations(variations) {
   });
 }
 
+const obsoleteNames = {};
+data.forEach((emoji) => {
+  if (emoji.obsoleted_by) {
+    obsoleteNames[emoji.unified] = emoji.short_names;
+  }
+});
+
 data.forEach((emoji) => {
   // skip emoji unsupported by apple
   if (!emoji.has_img_apple) {
+    return;
+  }
+
+  if (emoji.obsoleted_by) {
     return;
   }
 
@@ -61,7 +72,7 @@ data.forEach((emoji) => {
     char,
     emoji.sheet_x,
     emoji.sheet_y,
-    emoji.short_names,
+    [...emoji.short_names, ...(obsoleteNames[emoji.obsoletes] || [])],
     parseSkinVariations(emoji.skin_variations)
   ]);
 });

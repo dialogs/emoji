@@ -4,7 +4,7 @@
  */
 
 import type { Emoji } from './database';
-import EMOJI_PATTERN from './emojiPattern';
+import { pattern } from './indexes';
 import { getEmojiByName, getEmojiByChar } from './database';
 
 type EmojiRange = {
@@ -14,18 +14,11 @@ type EmojiRange = {
 };
 
 const NAMED_PATTERN = /:([a-z0-9+_-]+):(?::skin-tone-([23456]):)?/ig;
-const NAMED_TONES = {
-  '2': '🏻',
-  '3': '🏼',
-  '4': '🏽',
-  '5': '🏾',
-  '6': '🏿'
-};
 
 export function detectEmoji(text: string): EmojiRange[] {
   const result = [];
 
-  text.replace(EMOJI_PATTERN, (char: string, start: number) => {
+  text.replace(pattern, (char: string, start: number) => {
     const emoji = getEmojiByChar(char);
     if (emoji) {
       const end = start + char.length;
@@ -51,8 +44,10 @@ export function detectNamedEmoji(text: string): EmojiRange[] {
     if (emoji) {
       const end = start + match.length;
 
-      if (tone) {
-        const emojiWithTone = getEmojiByChar(emoji.char + NAMED_TONES[tone]);
+      if (tone && emoji.variations) {
+        const emojiWithToneChar = emoji.variations[parseInt(tone, 10) - 2];
+        const emojiWithTone = getEmojiByChar(emojiWithToneChar);
+
         if (emojiWithTone) {
           result.push({
             start,

@@ -10,7 +10,8 @@ export type Emoji = {
   char: string,
   name: ?string,
   x: number,
-  y: number
+  y: number,
+  variations?: string[]
 };
 
 export function getEmojiByChar(char: string): ?Emoji {
