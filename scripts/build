@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DIST="$DIRNAME/../dist"
+DIST="$DIRNAME/../lib"
 
 function download {
   wget --quiet --directory-prefix=$DIRNAME $1

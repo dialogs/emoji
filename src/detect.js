@@ -1,9 +1,9 @@
-/**
+/*
  * Copyright 2017 dialog LLC <info@dlg.im>
  * @flow
  */
 
-import type { Emoji } from './database';
+import type { Emoji } from './types';
 import { pattern } from './indexes';
 import { getEmojiByName, getEmojiByChar } from './database';
 

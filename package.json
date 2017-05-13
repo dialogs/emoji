@@ -2,11 +2,11 @@
   "name": "@dlghq/emoji",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/emoji.js",
-  "module": "dist/emoji.es.js",
-  "jsnext:main": "dist/emoji.es.js",
+  "main": "lib/emoji.js",
+  "module": "lib/emoji.es.js",
+  "jsnext:main": "lib/emoji.es.js",
   "files": [
-    "dist"
+    "lib"
   ],
   "scripts": {
     "pretest": "eslint src/ && flow check",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/dialogs/emoji#readme",
   "devDependencies": {
-    "@dlghq/babel-preset-dialog": "3.3.0",
+    "@dlghq/babel-preset-dialog": "3.4.0",
     "@dlghq/eslint-config-dialog": "1.25.0",
     "eslint": "3.19.0",
-    "flow-bin": "0.45.0",
-    "jest-cli": "19.0.2",
+    "flow-bin": "0.46.0",
+    "jest-cli": "20.0.1",
     "rollup": "0.41.6",
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-json": "2.1.1"

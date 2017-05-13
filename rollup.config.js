@@ -1,9 +1,9 @@
-/**
+/*
  * Copyright 2017 dialog LLC <info@dlg.im>
  */
 
-import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
+import babel from 'rollup-plugin-babel';
 
 const config = {
   entry: 'src/index.js',
@@ -11,13 +11,18 @@ const config = {
     json(),
     babel({
       babelrc: false,
-      presets: [['@dlghq/dialog', { modules: false, helpers: true, runtime: false }]]
+      presets: [['@dlghq/dialog', {
+        flow: true,
+        helpers: true,
+        modules: false,
+        runtime: false
+      }]]
     })
   ],
   sourceMap: true,
   targets: [
-    { dest: 'dist/emoji.js', format: 'cjs' },
-    { dest: 'dist/emoji.es.js', format: 'es' }
+    { dest: 'lib/emoji.js', format: 'cjs' },
+    { dest: 'lib/emoji.es.js', format: 'es' }
   ]
 };
 

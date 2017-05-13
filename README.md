@@ -17,7 +17,7 @@ import {
   getEmojiByChar,
   getEmojiByName
 } from '@dlghq/emoji';
-import AppleEmojiImage from '@dlghq/emoji/dist/apple.png';
+import AppleEmojiImage from '@dlghq/emoji/lib/apple.png';
 
 const { x, y } = getEmojiByName('smile');
 ```
@@ -31,11 +31,8 @@ type Emoji = {
   name: ?string,
   x: number,
   y: number,
-  hasApple: boolean,
-  hasGoogle: boolean,
-  hasTwitter: boolean,
-  hasEmojione: boolean
-}
+  variations?: string[]
+};
 ```
 
 `categories: { [name: string]: string[] }`

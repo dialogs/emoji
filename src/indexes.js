@@ -1,7 +1,9 @@
 /*
  * Copyright 2017 dialog LLC <info@dlg.im>
+ * @flow
  */
 
+import type { Emoji } from './types';
 import { emojis } from './emoji.json';
 import { escapeUTF8 } from './utils';
 
@@ -15,16 +17,16 @@ const VAR_EMOJI_CHAR = 0;
 const VAR_EMOJI_X = 1;
 const VAR_EMOJI_Y = 2;
 
-const regexChars = [];
-const charIndex = Object.create(null);
-const nameIndex = Object.create(null);
+const regexChars: string[] = [];
+const charIndex: { [char: string]: Emoji } = Object.create(null);
+const nameIndex: { [name: string]: Emoji } = Object.create(null);
 
 for (const raw of emojis) {
   const char = raw[FULL_EMOJI_CHAR];
   const names = raw[FULL_EMOJI_NAMES];
   const variations = raw[FULL_EMOJI_VARIATIONS];
 
-  const emoji = {
+  const emoji: Emoji = {
     char,
     name: names[0],
     x: raw[FULL_EMOJI_X],

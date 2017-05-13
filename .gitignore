@@ -7,5 +7,4 @@ yarn.lock
 
 # Build
 lib/
-dist/
 src/emoji.json
