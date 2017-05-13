@@ -4,13 +4,11 @@
  */
 
 export function isAppleEmojiSupports(): boolean {
-  if (!window.navigator) {
+  if (typeof navigator === 'undefined') {
     return false;
   }
 
-  const isMacOS = /Mac OS X 10[._ ](?:[789]|1\d)/i;
-
-  return isMacOS.test(navigator.userAgent);
+  return (/MacIntel|iPhone|iPad|iPod/).test(navigator.platform);
 }
 
 export function isDigit(char: string): boolean {
