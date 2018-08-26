@@ -1,6 +1,6 @@
 {
   "name": "@dlghq/emoji",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "main": "lib/emoji.js",
   "module": "lib/emoji.es.js",
