@@ -19,9 +19,7 @@ describe('categories', () => {
       categories[category].forEach((char) => {
         expect(
           detectEmoji(char)
-        ).toEqual([
-          { start: 0, end: char.length, emoji: getEmojiByChar(char) }
-        ]);
+        ).toEqual([{ start: 0, end: char.length, emoji: getEmojiByChar(char) }]);
       });
     });
   });
@@ -34,9 +32,7 @@ describe('categories', () => {
 
         expect(
           detectNamedEmoji(`:${emoji.name}:`)
-        ).toEqual([
-          { emoji, start: 0, end: emoji.name.length + 2 }
-        ]);
+        ).toEqual([{ emoji, start: 0, end: emoji.name.length + 2 }]);
       });
     });
   });

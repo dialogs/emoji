@@ -18,8 +18,8 @@ const VAR_EMOJI_X = 1;
 const VAR_EMOJI_Y = 2;
 
 const regexChars: string[] = [];
-const charIndex: { [char: string]: Emoji } = Object.create(null);
-const nameIndex: { [name: string]: Emoji } = Object.create(null);
+const charIndex: { [char: string]: Emoji } = {};
+const nameIndex: { [name: string]: Emoji } = {};
 
 for (const raw of emojis) {
   const char = raw[FULL_EMOJI_CHAR];

@@ -18,15 +18,11 @@ describe('detect', () => {
   it('should detect emoji', () => {
     expect(
       detectEmoji('Hello, 😄!')
-    ).toEqual([
-      { start: 7, end: 9, emoji: getEmojiByChar('😄') }
-    ]);
+    ).toEqual([{ start: 7, end: 9, emoji: getEmojiByChar('😄') }]);
 
     expect(
       detectNamedEmoji('Hello, :smile:!')
-    ).toEqual([
-      { start: 7, end: 14, emoji: getEmojiByChar('😄') }
-    ]);
+    ).toEqual([{ start: 7, end: 14, emoji: getEmojiByChar('😄') }]);
   });
 
   it('should detect multiple emojis', () => {
@@ -48,38 +44,28 @@ describe('detect', () => {
   it('should detect emoji with skin tone', () => {
     expect(
       detectEmoji('Hello, 👮🏿‍♂️!')
-    ).toEqual([
-      { start: 7, end: 14, emoji: getEmojiByChar('👮🏿‍♂️') }
-    ]);
+    ).toEqual([{ start: 7, end: 14, emoji: getEmojiByChar('👮🏿‍♂️') }]);
   });
 
   it('should detect emoji with skin tone by name', () => {
     expect(
       detectNamedEmoji('Hello, :cop::skin-tone-6:!')
-    ).toEqual([
-      { start: 7, end: 25, emoji: getEmojiByChar('👮🏿‍♂️') }
-    ]);
+    ).toEqual([{ start: 7, end: 25, emoji: getEmojiByChar('👮🏿‍♂️') }]);
   });
 
   it('should skip skin tone', () => {
     expect(
       detectNamedEmoji('Hello, :smile::skin-tone-6:!')
-    ).toEqual([
-      { start: 7, end: 27, emoji: getEmojiByChar('😄') }
-    ]);
+    ).toEqual([{ start: 7, end: 27, emoji: getEmojiByChar('😄') }]);
   });
 
   it('should detect Unicode 9.0 emojis', () => {
     expect(
       detectNamedEmoji('Hello, :clown_face:!')
-    ).toEqual([
-      { start: 7, end: 19, emoji: getEmojiByChar('🤡') }
-    ]);
+    ).toEqual([{ start: 7, end: 19, emoji: getEmojiByChar('🤡') }]);
 
     expect(
       detectEmoji('Hello, 🤷🏼‍♂️!')
-    ).toEqual([
-      { start: 7, end: 14, emoji: getEmojiByChar('🤷🏼‍♂️') }
-    ]);
+    ).toEqual([{ start: 7, end: 14, emoji: getEmojiByChar('🤷🏼‍♂️') }]);
   });
 });

@@ -44,8 +44,10 @@ export function detectNamedEmoji(text: string): EmojiRange[] {
     if (emoji) {
       const end = start + match.length;
 
-      if (tone && emoji.variations) {
-        const emojiWithToneChar = emoji.variations[parseInt(tone, 10) - 2];
+      const { variations } = emoji;
+      if (tone && variations) {
+        const parsedTone = (parseInt(tone, 10) || 2) - 2;
+        const emojiWithToneChar = variations.length > parsedTone ? variations[parsedTone] : emoji.char;
         const emojiWithTone = getEmojiByChar(emojiWithToneChar);
 
         if (emojiWithTone) {
