@@ -31,13 +31,13 @@
   },
   "homepage": "https://github.com/dialogs/emoji#readme",
   "devDependencies": {
-    "@dlghq/babel-preset-dialog": "3.4.3",
+    "@dlghq/babel-preset-dialog": "4.3.1",
     "@dlghq/eslint-config-dialog": "3.4.0",
-    "eslint": "5.4.0",
-    "flow-bin": "0.79.1",
-    "jest-cli": "23.5.0",
-    "rollup": "0.65.0",
-    "rollup-plugin-babel": "3.0.7",
-    "rollup-plugin-json": "3.0.0"
+    "eslint": "5.11.1",
+    "flow-bin": "0.89.0",
+    "jest-cli": "23.6.0",
+    "rollup": "1.0.1",
+    "rollup-plugin-babel": "4.2.0",
+    "rollup-plugin-json": "3.1.0"
   }
 }
