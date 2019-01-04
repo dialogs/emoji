@@ -6,24 +6,28 @@ import json from 'rollup-plugin-json';
 import babel from 'rollup-plugin-babel';
 
 const config = {
-  entry: 'src/index.js',
+  input: 'src/index.js',
   plugins: [
     json(),
     babel({
       babelrc: false,
-      presets: [['@dlghq/dialog', {
-        flow: true,
-        helpers: true,
-        modules: false,
-        runtime: false
-      }]]
-    })
+      presets: [
+        [
+          '@dlghq/dialog',
+          {
+            flow: true,
+            helpers: true,
+            modules: false,
+            runtime: false,
+          },
+        ],
+      ],
+    }),
   ],
-  sourceMap: true,
-  targets: [
-    { dest: 'lib/emoji.js', format: 'cjs' },
-    { dest: 'lib/emoji.es.js', format: 'es' }
-  ]
+  output: [
+    { file: 'lib/emoji.js', format: 'cjs', sourcemap: true },
+    { file: 'lib/emoji.es.js', format: 'es', sourcemap: true },
+  ],
 };
 
 export default config;
