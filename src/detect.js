@@ -10,10 +10,10 @@ import { getEmojiByName, getEmojiByChar } from './database';
 type EmojiRange = {
   emoji: Emoji,
   start: number,
-  end: number
+  end: number,
 };
 
-const NAMED_PATTERN = /:([a-z0-9+_-]+):(?::skin-tone-([23456]):)?/ig;
+const NAMED_PATTERN = /:([a-z0-9+_-]+):(?::skin-tone-([23456]):)?/gi;
 
 export function detectEmoji(text: string): EmojiRange[] {
   const result = [];
@@ -26,7 +26,7 @@ export function detectEmoji(text: string): EmojiRange[] {
       result.push({
         emoji,
         start,
-        end
+        end,
       });
     }
 
@@ -39,41 +39,47 @@ export function detectEmoji(text: string): EmojiRange[] {
 export function detectNamedEmoji(text: string): EmojiRange[] {
   const result = [];
 
-  text.replace(NAMED_PATTERN, (match: string, name: string, tone: ?string, start: number) => {
-    const emoji = getEmojiByName(name);
-    if (emoji) {
-      const end = start + match.length;
+  text.replace(
+    NAMED_PATTERN,
+    (match: string, name: string, tone: ?string, start: number) => {
+      const emoji = getEmojiByName(name);
+      if (emoji) {
+        const end = start + match.length;
 
-      const { variations } = emoji;
-      if (tone && variations) {
-        const parsedTone = (parseInt(tone, 10) || 2) - 2;
-        const emojiWithToneChar = variations.length > parsedTone ? variations[parsedTone] : emoji.char;
-        const emojiWithTone = getEmojiByChar(emojiWithToneChar);
+        const { variations } = emoji;
+        if (tone && variations) {
+          const parsedTone = (parseInt(tone, 10) || 2) - 2;
+          const emojiWithToneChar =
+            variations.length > parsedTone
+              ? variations[parsedTone]
+              : emoji.char;
+          const emojiWithTone = getEmojiByChar(emojiWithToneChar);
 
-        if (emojiWithTone) {
-          result.push({
-            start,
-            end,
-            emoji: emojiWithTone
-          });
+          if (emojiWithTone) {
+            result.push({
+              start,
+              end,
+              emoji: emojiWithTone,
+            });
+          } else {
+            result.push({
+              start,
+              end,
+              emoji,
+            });
+          }
         } else {
           result.push({
             start,
             end,
-            emoji
+            emoji,
           });
         }
-      } else {
-        result.push({
-          start,
-          end,
-          emoji
-        });
       }
-    }
 
-    return match;
-  });
+      return match;
+    },
+  );
 
   return result;
 }

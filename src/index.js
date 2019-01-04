@@ -13,5 +13,5 @@ export {
   getEmojiByName,
   shouldUseImage,
   detectEmoji,
-  detectNamedEmoji
+  detectNamedEmoji,
 };

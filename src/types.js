@@ -8,5 +8,5 @@ export type Emoji = {
   name: ?string,
   x: number,
   y: number,
-  variations?: string[]
+  variations?: string[],
 };

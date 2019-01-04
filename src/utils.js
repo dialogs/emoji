@@ -8,11 +8,11 @@ export function isAppleEmojiSupports(): boolean {
     return false;
   }
 
-  return (/MacIntel|iPhone|iPad|iPod/).test(navigator.platform);
+  return /MacIntel|iPhone|iPad|iPod/.test(navigator.platform);
 }
 
 export function isDigit(char: string): boolean {
-  return (/[0-9]|#/).test(char);
+  return /[0-9]|#/.test(char);
 }
 
 export function escapeUTF8(text: string): string {

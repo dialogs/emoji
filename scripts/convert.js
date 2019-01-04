@@ -12,10 +12,10 @@ const sortOrder = {};
 
 function unifiedToChar(unified) {
   return unified
-          .toLowerCase()
-          .split('-')
-          .map((code) => String.fromCodePoint(parseInt(code, 16)))
-          .join('');
+    .toLowerCase()
+    .split('-')
+    .map((code) => String.fromCodePoint(parseInt(code, 16)))
+    .join('');
 }
 
 function parseSkinVariations(variations) {
@@ -27,11 +27,7 @@ function parseSkinVariations(variations) {
     const emoji = variations[key];
     const char = unifiedToChar(emoji.unified);
 
-    return [
-      char,
-      emoji.sheet_x,
-      emoji.sheet_y
-    ];
+    return [char, emoji.sheet_x, emoji.sheet_y];
   });
 }
 
@@ -73,7 +69,7 @@ data.forEach((emoji) => {
     emoji.sheet_x,
     emoji.sheet_y,
     [...emoji.short_names, ...(obsoleteNames[emoji.obsoletes] || [])],
-    parseSkinVariations(emoji.skin_variations)
+    parseSkinVariations(emoji.skin_variations),
   ]);
 });
 
@@ -83,5 +79,5 @@ Object.keys(categories).forEach((name) => {
 
 fs.writeFileSync(
   path.resolve(__dirname, '../src/emoji.json'),
-  JSON.stringify({ emojis, categories }, null, '  ')
+  JSON.stringify({ emojis, categories }, null, '  '),
 );

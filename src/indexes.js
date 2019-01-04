@@ -30,7 +30,7 @@ for (const raw of emojis) {
     char,
     name: names[0],
     x: raw[FULL_EMOJI_X],
-    y: raw[FULL_EMOJI_Y]
+    y: raw[FULL_EMOJI_Y],
   };
 
   regexChars.push(escapeUTF8(char));
@@ -52,7 +52,7 @@ for (const raw of emojis) {
         char: variationChar,
         name: names[0],
         x: variation[VAR_EMOJI_X],
-        y: variation[VAR_EMOJI_Y]
+        y: variation[VAR_EMOJI_Y],
       };
     }
 
@@ -64,8 +64,4 @@ regexChars.sort((a, b) => b.length - a.length);
 
 const pattern = new RegExp(`(?:${regexChars.join('|')})`, 'g');
 
-export {
-  pattern,
-  charIndex,
-  nameIndex
-};
+export { pattern, charIndex, nameIndex };
