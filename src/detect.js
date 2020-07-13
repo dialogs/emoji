@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 dialog LLC <info@dlg.im>
+ * Copyright 2020 dialog LLC <info@dlg.im>
  * @flow
  */
 
