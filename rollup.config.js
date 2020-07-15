@@ -1,12 +1,18 @@
 /*
- * Copyright 2017 dialog LLC <info@dlg.im>
+ * Copyright 2020 dialog LLC <info@dlg.im>
  */
 
 import json from 'rollup-plugin-json';
 import babel from 'rollup-plugin-babel';
 
+const banner = `/*
+ * Copyright 2020 dialog LLC <info@dlg.im>
+ * @flow strict
+ */`;
+
 const config = {
   entry: 'src/index.js',
+  banner,
   plugins: [
     json(),
     babel({
